@@ -227,7 +227,10 @@ class PyBambooHR(object):
 
         xml = self._format_employee_xml(employee)
         url = self.base_url + 'employees/'
-        r = requests.post(url, data=xml, headers=self.headers, auth=(self.api_key, ''))
+        r = requests.post(
+            url, data=xml.encode('utf-8'), headers=self.headers,
+            auth=(self.api_key, '')
+        )
         r.raise_for_status()
 
         return {'url': r.headers['location'], 'id': r.headers['location'].replace(url, "")}
