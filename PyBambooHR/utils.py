@@ -58,7 +58,7 @@ def make_field_xml(id, value=None, pre='', post=''):
         tag = u'<field id="{}">{}</field>'.format(id, value)
     else:
         tag = '<field id="{}" />'.format(id)
-    return '{0}{1}{2}'.format(pre, tag, post)
+    return u'{0}{1}{2}'.format(pre, tag, post)
 
 
 def resolve_date_argument(arg):

@@ -52,7 +52,9 @@ class PyBambooHR(object):
         self.api_version = 'v1'
 
         # Global headers
-        self.headers = {}
+        self.headers = {
+            'Content-type': 'text/plain; charset=utf-8'
+        }
 
         # Referred to in the documentation as [ Company ] sometimes.
         self.subdomain = subdomain
@@ -225,7 +227,10 @@ class PyBambooHR(object):
 
         xml = self._format_employee_xml(employee)
         url = self.base_url + 'employees/'
-        r = requests.post(url, data=xml, headers=self.headers, auth=(self.api_key, ''))
+        r = requests.post(
+            url, data=xml.encode('utf-8'), headers=self.headers,
+            auth=(self.api_key, '')
+        )
         r.raise_for_status()
 
         return {'url': r.headers['location'], 'id': r.headers['location'].replace(url, "")}
