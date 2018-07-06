@@ -52,7 +52,9 @@ class PyBambooHR(object):
         self.api_version = 'v1'
 
         # Global headers
-        self.headers = {}
+        self.headers = {
+            'Content-type': 'text/plain; charset=utf-8'
+        }
 
         # Referred to in the documentation as [ Company ] sometimes.
         self.subdomain = subdomain
